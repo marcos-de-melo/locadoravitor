@@ -55,6 +55,16 @@ include("./db/conexao.php");
             case "lista-categorias":
                 include("lista-categorias.php");
                 break;
+            case "cad-categorias":
+                include("cad-categorias.php");
+                break;
+            case "inserir-categorias":
+                include("inserir-categorias.php");
+                break;
+            case "excluir-categorias":
+                include("excluir-categorias.php");
+                break;
+
             case "lista-clientes":
                 include("lista-clientes.php");
                 break;
