@@ -64,7 +64,6 @@ include("./db/conexao.php");
             case "excluir-categorias":
                 include("excluir-categorias.php");
                 break;
-
             case "lista-clientes":
                 include("lista-clientes.php");
                 break;
