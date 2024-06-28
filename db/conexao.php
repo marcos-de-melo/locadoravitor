@@ -1,4 +1,5 @@
 <?php
+// conbxão com o banco
 const SERVIDOR = "localhost";
 const USUARIO = "root";
 const SENHA = "";
