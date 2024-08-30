@@ -1,4 +1,5 @@
-li{
-    display: inline-block;
-    margin-right: 10px;
+.bg-main{
+    background-image: url("../img/capa-video-locadora.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

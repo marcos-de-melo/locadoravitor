@@ -1,1 +1,7 @@
-<h2>Home</h2>
+<div class="container-fluid bg-main vh-100">
+   
+</div>
+
+
+
+
