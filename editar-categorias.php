@@ -8,22 +8,25 @@ $dados = mysqli_fetch_assoc($rs)
 
 
 ?>
-<h2>Edição de Categorias</h2>
-<div>
+<div class="container">
+<h3 class="mt-2 bi bi-bookmark-plus">Edição de Categorias</h3>
+<div class="mt-3">
     <form action="index.php?menu=atualizar-categorias" method="post">
-        <div>
-            <label for="idCategoria">id</label>
-            <input type="text" name="idCategoria" id="idCategoria" value="<?=$dados["idCategoria"]?>" readonly>
+        <div class="mb-3">
+            <label class="form-label" for="idCategoria">id</label>
+            <input class="form-control" type="text" name="idCategoria" id="idCategoria" value="<?=$dados["idCategoria"]?>" readonly>
         </div>
-        <div>
-            <label for="nomeCategoria">Nome da Categoria</label>
-            <input type="text" name="nomeCategoria" id="nomeCategoria" value="<?=$dados["nomeCategoria"]?>" required>
+        <div class="mb-3">
+            <label class="form-label" for="nomeCategoria">Nome da Categoria</label>
+            <input class="form-control" type="text" name="nomeCategoria" id="nomeCategoria" value="<?=$dados["nomeCategoria"]?>" required>
         </div>
 
         <div>
-            <button type="submit">
+            <button class="btn btn-success bi bi-floppy-fill" type="submit">
                 Salvar
             </button>
         </div>
     </form>
+</div>
+
 </div>
