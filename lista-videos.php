@@ -6,8 +6,9 @@
     } else {
         $txtPesquisa = "";
     }
-
-
+    $quantidade = 10;
+    $pagina = (isset($_GET["pagina"])) ? (int) $_GET["pagina"] : 1;
+    $inicio = ($quantidade * $pagina) - $quantidade;
 
     $sql = "SELECT 
 idVideo,tituloVideo,duracaoVideo, valorLocacaoVideo,
@@ -21,7 +22,8 @@ AS statusVideo
  FROM tbvideos AS v left join tbcategorias AS c 
  ON v.idCategoria = c.idCategoria 
  WHERE tituloVideo LIKE '%{$txtPesquisa}%' 
- order by tituloVideo asc";
+ order by tituloVideo asc LIMIT $inicio, $quantidade";
+
     $rs = mysqli_query($conexao, $sql);
 
     ?>
@@ -57,11 +59,11 @@ AS statusVideo
             <?php
             while ($dados = mysqli_fetch_assoc($rs)) {
                 $corStatusVideo = "";
-                if($dados["statusVideo"] === "Disponível"){
+                if ($dados["statusVideo"] === "Disponível") {
                     $corStatusVideo = "text-bg-success";
-                }elseif($dados["statusVideo"] === "Locado"){
+                } elseif ($dados["statusVideo"] === "Locado") {
                     $corStatusVideo = "text-bg-warning";
-                }else{
+                } else {
                     $corStatusVideo = "text-bg-danger";
                 }
                 ?>
@@ -103,4 +105,29 @@ AS statusVideo
             </tr>
         </tfoot>
     </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <?php
+
+            $sql = "SELECT COUNT(idVideo) AS total FROM tbvideos";
+
+            $result = mysqli_query($conexao, $sql);
+
+            $dados = mysqli_fetch_assoc($result);
+            $totalRegistros = $dados["total"];
+            $quantidadePaginas = ceil($totalRegistros / $quantidade);
+            echo "<li class='page-item'><span class='text-muted page-link'>Total de registros: $totalRegistros </span> </li>";
+            echo "<li class='page-item'><a class='page-link' href='index.php?menu=lista-videos&pagina=1'> Primeira </a>";
+            for ($i = 1; $i <= $quantidadePaginas; $i++) {
+                if ($i == $pagina) {
+                    echo "<li class='page-item active'><a class='page-link' href='index.php?menu=lista-videos&pagina=$i'> $i </a>";
+                } else {
+                    echo "<li class='page-item'><a class='page-link' href='index.php?menu=lista-videos&pagina=$i'> $i </a>";
+                }
+            }
+            echo "<li class='page-item'><a class='page-link' href='index.php?menu=lista-videos&pagina=$quantidadePaginas'> Ultima </a>";
+
+            ?>
+        </ul>
+    </nav>
 </div>

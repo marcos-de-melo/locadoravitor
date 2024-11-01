@@ -1,3 +1,5 @@
+<div class="container">
+    <h3 class="mt-2 bi bi-person-circle">Lista de Clientes</h3>
 <h2>Lista de Clientes</h2>
 
 <?php
@@ -15,17 +17,20 @@ WHERE nomeCliente LIKE '%{$txtPesquisa}%'
 $rs = mysqli_query($conexao, $sql);
 
 ?>
-<div>
-    <a href="index.php?menu=cad-clientes">Novo Cliente</a>
+<div class="mb-3">
+    <a class="btn btn-secondary" href="index.php?menu=cad-clientes">Novo Cliente</a>
 </div>
-<div>
-    <form action="index.php?menu=lista-clientes" method="post">
-        <label for="txtPesquisa">Pesquisar</label>
-        <input type="search" name="txtPesquisa" id="txtPesquisa" value="<?php echo $txtPesquisa ?>">
-        <button type="submit">OK</button>
-    </form>
-</div>
-<table border="1">
+    <div class="mb-3">
+        <form action="index.php?menu=lista-clientes" method="post">
+            <div class="input-group">
+                <label class="input-group-text" for="txtPesquisa">Pesquisar</label>
+                <input class="form-control" type="search" name="txtPesquisa" id="txtPesquisa"
+                    value="<?php echo $txtPesquisa ?>">
+                <button class="btn btn-secondary" type="submit">OK</button>
+            </div>
+        </form>
+    </div>
+<table class="table table-dark table-striped table-hover">
     <thead>
         <tr>
             <th>Id </th>
@@ -52,10 +57,14 @@ $rs = mysqli_query($conexao, $sql);
                 <td> <?= $dados["dataNascClienteBr"]  ?> </td>
                
                 <td>
-                    <a href="index.php?menu=editar-clientes&idCliente=<?= $dados["idCliente"] ?>">Editar</a>
+                    <a class="btn btn-warning" href="index.php?menu=editar-clientes&idCliente=<?= $dados["idCliente"] ?>">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
                 </td>
                 <td>
-                    <a href="index.php?menu=excluir-clientes&idCliente=<?= $dados["idCliente"] ?>">Excluir</a>
+                    <a class="btn btn-danger" href="index.php?menu=excluir-clientes&idCliente=<?= $dados["idCliente"] ?>">
+                    <i class="bi bi-trash"></i>
+                </a>
                 </td>
             </tr>
         <?php
@@ -64,13 +73,15 @@ $rs = mysqli_query($conexao, $sql);
     </tbody>
 
     <tfoot>
-    <tr>
-    <th>Id </th>
+            <tr>
+            <th>Id </th>
             <th> Cliente </th>
             <th> E-mail </th>
             <th> Telefone </th>
-             <th> Editar </th>
+            <th> Data de Nasc. </th>
+            <th> Editar </th>
             <th> Excluir </th>
         </tr>
     </tfoot>
 </table>
+</div>
